@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  app:
+    image: naru-backend
+    container_name: naru-backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/naru
+      SPRING_DATASOURCE_USERNAME: naru
+      SPRING_DATASOURCE_PASSWORD:
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: naru
+      POSTGRES_USER: naru
+      POSTGRES_PASSWORD:
+    ports:
+      - "5432:5432"
